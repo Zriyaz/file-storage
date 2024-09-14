@@ -207,7 +207,6 @@ export const toggleFavorite = mutation({
     if (!access) {
       throw new ConvexError("no access to file");
     }
-
     const favorite = await ctx.db
       .query("favorites")
       .withIndex("by_userId_orgId_fileId", (q) =>

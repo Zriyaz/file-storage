@@ -3,7 +3,7 @@ import { FileBrowser } from "../_components/file-browser";
 export default function FilesPage() {
     return (
         <div>
-            <FileBrowser />
+            <FileBrowser title="All Files" />
         </div>
     );
 }

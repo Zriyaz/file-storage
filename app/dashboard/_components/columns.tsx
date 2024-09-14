@@ -57,7 +57,7 @@ export const columns: ColumnDef<
                     <div>
                         <FileCardActions
                             file={row.original}
-                        // isFavorited={row.original.isFavorited}
+                            isFavorited={row.original.isFavorited}
                         />
                     </div>
                 );

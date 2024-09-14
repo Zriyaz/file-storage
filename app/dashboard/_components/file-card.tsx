@@ -41,7 +41,7 @@ export function FileCard({
                     {file.name}
                 </CardTitle>
                 <div className="absolute top-2 right-2">
-                    <FileCardActions file={file} />
+                    <FileCardActions file={file} isFavorited={file.isFavorited} />
                 </div>
             </CardHeader>
             <CardContent className="h-[200px] flex justify-center items-center">

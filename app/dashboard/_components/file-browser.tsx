@@ -23,7 +23,13 @@ import { columns } from "./columns";
 
 type Props = {}
 
-export const FileBrowser = (props: Props) => {
+export const FileBrowser = ({ title,
+    favoritesOnly,
+    deletedOnly, }: {
+        title: string;
+        favoritesOnly?: boolean;
+        deletedOnly?: boolean;
+    }) => {
     const organization = useOrganization();
     const user = useUser();
     const [query, setQuery] = useState("");
@@ -33,11 +39,16 @@ export const FileBrowser = (props: Props) => {
     if (organization.isLoaded && user.isLoaded) {
         orgId = organization.organization?.id ?? user.user?.id;
     }
+
     const files = useQuery(
         api.file.getFiles,
         orgId
             ? {
-                orgId
+                orgId,
+                type: type === "all" ? undefined : type,
+                query,
+                favorites: favoritesOnly,
+                deletedOnly,
             }
             : "skip"
     );
@@ -75,8 +86,8 @@ export const FileBrowser = (props: Props) => {
 
     return (
         <div>
-            <div className="flex justify-between items-center my-8">
-                <h1 className="text-4xl font-bold">Your Files</h1>
+            <div className="flex justify-between items-center pb-8">
+                <h1 className="text-4xl font-bold">{title}</h1>
 
                 <SearchBar query={query} setQuery={setQuery} />
 
